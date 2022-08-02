@@ -14,16 +14,20 @@ class IdeasController < ApplicationController
             flash[:notice] = "Successfully Created an Idea"
             redirect_to idea_path(@idea)
         else  
-            render :new
+            render :new, status: 303
         end
     end
 
     def show
-
+        @reviews = @idea.reviews.order(created_at: :desc)
+        @review = Review.new
+        @like = current_user.likes.find_by_idea_id params[:id]
+        # or @like = @idea.likes.find_by(user: current_user)
     end
 
     def index
         @ideas = Idea.order updated_at: :desc
+        
     end
 
     def edit
@@ -34,7 +38,7 @@ class IdeasController < ApplicationController
         if @idea.update idea_params
             redirect_to idea_path(@idea)
         else
-            render :edit
+            render :edit, status: 303
         end
     end
 

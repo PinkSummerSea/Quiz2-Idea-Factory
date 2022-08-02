@@ -8,3 +8,32 @@
     <br>
     <%= button_to "Delete", idea_path(@idea), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %> 
 <% end %> 
+
+<% if @like.present? %>
+    <%= button_to "Liked", idea_like_path(@idea, @like), method: :delete %> 
+<% else %>
+    <%= button_to "Like", idea_likes_path(@idea), method: :post %> 
+<% end %> 
+
+<p>Likes: <%= @idea.likes.count %></p>
+
+<% if @review.errors.any? %> 
+    <% @review.errors.full_messages.each do |msg| %> 
+        <p><%= msg %> </p>
+    <% end %> 
+<% end %> 
+
+<%= form_for [@idea, @review] do |f| %>
+    <%= f.text_area :body %>
+    <br>
+    <%= f.submit %>  
+<% end %> 
+
+<% @reviews.each do |review| %>
+    <p><%= review.body %></p>
+    <p>By <%= review.user.first_name %></p>
+    <% if can?(:crud, review) %>
+        <%= button_to "Delete", idea_review_path(@idea, review), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %> 
+    <% end %>  
+    <hr>
+<% end %> 

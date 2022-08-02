@@ -4,5 +4,12 @@
     <h3><%= link_to idea.title, idea_path(idea) %></h3>
     <p><%= idea.description %></p>
     <p>By <%= idea.user.first_name %></p>
+    <% @like = idea.likes.find_by(user: current_user) %> 
+    <% if @like %>
+        <%= button_to "Liked", destroy_idea_on_index_path(idea, @like), method: :delete %> 
+    <% else %>
+        <%= button_to "Like", like_idea_on_index_path(idea), method: :post %> 
+    <% end %> 
+    <p>Likes: <%= idea.likes.count %></p>
     <hr>
 <% end %>  
