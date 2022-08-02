@@ -1,0 +1,10 @@
+<h1>View Idea</h1>
+<h2><%= @idea.title %></h2>
+<p><%= @idea.description %></p>
+<p>Created by: <%= @idea.user.first_name %></p>
+
+<% if can?(:crud, @idea) %>
+    <%= link_to "Edit", edit_idea_path(@idea) %> 
+    <br>
+    <%= button_to "Delete", idea_path(@idea), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %> 
+<% end %> 
