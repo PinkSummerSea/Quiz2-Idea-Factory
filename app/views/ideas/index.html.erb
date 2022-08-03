@@ -1,15 +1,17 @@
-<h1>Ideas</h1>
 
 <% @ideas.each do |idea| %>
-    <h3><%= link_to idea.title, idea_path(idea) %></h3>
-    <p><%= idea.description %></p>
-    <p>By <%= idea.user.first_name %></p>
-    <% @like = idea.likes.find_by(user: current_user) %> 
-    <% if @like %>
-        <%= button_to "Liked", destroy_idea_on_index_path(idea, @like), method: :delete %> 
-    <% else %>
-        <%= button_to "Like", like_idea_on_index_path(idea), method: :post %> 
-    <% end %> 
-    <p>Likes: <%= idea.likes.count %></p>
-    <hr>
+    <div class="card mb-3 bg-yellow">
+        <div class="card-body">
+            <h5 class="card-title"><%= link_to idea.title, idea_path(idea),class:"pink-title" %></h5>
+            <p class="card-text"><%= idea.description %></p>
+            <p class="card-text">By <%= idea.user.first_name %></p>
+            <p class="card-text">Likes: <%= idea.likes.count %></p>
+            <% @like = idea.likes.find_by(user: current_user) %> 
+            <% if @like %>
+                <%= button_to "Liked", destroy_idea_on_index_path(idea, @like), method: :delete, class: "btn btn-primary" %> 
+            <% else %>
+                <%= button_to "Like", like_idea_on_index_path(idea), method: :post, class: "btn btn-primary" %> 
+            <% end %> 
+        </div>
+    </div>
 <% end %>  

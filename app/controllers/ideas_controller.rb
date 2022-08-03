@@ -21,8 +21,7 @@ class IdeasController < ApplicationController
     def show
         @reviews = @idea.reviews.order(created_at: :desc)
         @review = Review.new
-        @like = current_user.likes.find_by_idea_id params[:id]
-        # or @like = @idea.likes.find_by(user: current_user)
+        @like = @idea.likes.find_by(user: current_user)
     end
 
     def index
