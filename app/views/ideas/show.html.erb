@@ -1,0 +1,45 @@
+
+<h2 class="mb-3"><%= @idea.title %></h2>
+<p><%= @idea.description %></p>
+<p>Created by: <%= @idea.user.first_name %></p>
+
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <% if can?(:crud, @idea) %>
+        <div class="btn-group me-2" role="group">
+        <%= button_to "Edit", edit_idea_path(@idea), method: :get, class: "btn btn-warning" %> 
+        </div>
+        <div class="btn-group me-2" role="group">
+        <%= button_to "Delete", idea_path(@idea), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn btn-info" %> 
+        </div>
+    <% end %> 
+    
+    <% if @like.present? %>
+    <%= button_to "Liked", idea_like_path(@idea, @like), method: :delete, class: "btn btn-primary mb-3" %> 
+    <% else %>
+        <%= button_to "Like", idea_likes_path(@idea), method: :post,class: "btn btn-primary mb-3" %> 
+    <% end %> 
+
+    <h5 class="ms-auto">Likes: <%= @idea.likes.count %></h5>
+</div>
+
+
+<% if @review.errors.any? %> 
+    <% @review.errors.full_messages.each do |msg| %> 
+        <p><%= msg %> </p>
+    <% end %> 
+<% end %> 
+
+<%= form_for [@idea, @review] do |f| %>
+    <%= f.text_area :body, class: "form-control" %>
+    <br>
+    <%= f.submit "Leave Review", class: "btn btn-info mb-5" %>  
+<% end %> 
+
+<% @reviews.each do |review| %>
+    <p><%= review.body %></p>
+    <p>By <%= review.user.first_name %></p>
+    <% if can?(:crud, review) %>
+        <%= button_to "Delete", idea_review_path(@idea, review), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class:"btn btn-primary" %> 
+    <% end %>  
+    <hr>
+<% end %> 

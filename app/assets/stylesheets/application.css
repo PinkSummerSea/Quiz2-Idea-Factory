@@ -1,15 +1,80 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+body {
+    font-family: 'Rubik', sans-serif;
+}
+
+.my-nav {
+    background-color:rgb(205, 240, 234) !important;
+} 
+
+.navbar-brand {
+    font-size:xx-large;
+    font-weight:700;
+    font-style: italic;
+    color: rgb(246, 198, 234);
+}
+ 
+.navbar-brand:hover {
+    font-size:xx-large;
+    font-weight:700;
+    color: rgb(247, 174, 229);
+    font-style: italic;
+}
+
+
+
+.btn-info, .btn-info:active, .btn-info:visited {
+    background-color:rgb(250, 244, 183) !important;
+    border-color: rgb(250, 244, 183) !important;
+}
+ 
+.btn-info:hover {
+    background-color:rgb(247, 238, 146);
+    border-color: rgb(247, 238, 146);
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:visited {
+    color:black !important;
+    background-color:rgb(246, 198, 234) !important;
+    border-color: rgb(246, 198, 234) !important;
+}
+ 
+.btn-primary:hover {
+    color:black !important;
+    background-color:rgb(247, 174, 229) !important;
+    border-color: rgb(247, 174, 229) !important;
+}
+
+.btn-warning, .btn-warning:active, .btn-warning:visited {
+    background-color:rgb(205, 240, 234) !important;
+    border-color: rgb(205, 240, 234) !important;
+}
+ 
+.btn-warning:hover {
+    background-color:rgb(173, 236, 225);
+    border-color: rgb(173, 236, 225);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+ 
+ a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.pink-title {
+    font-size: 1.5em;
+}
+
+.green {
+    font-size: 1.5em;
+    color: rgb(246, 198, 234);
+    text-decoration: underline;
+}
+
+.green:hover {
+    color: rgb(247, 174, 229);
+    text-decoration: underline;
+}
